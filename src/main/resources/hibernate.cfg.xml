@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Database connection settings -->
+        <!--        postgresql config-->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/Universities</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">554548</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="connection.pool_size">1</property>
+        <property name="show_sql">false</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+
+        <!-- Mapping files -->
+        <mapping class="org.example.DAL.models.Credit"/>
+        <mapping class="org.example.DAL.models.Department"/>
+        <mapping class="org.example.DAL.models.Exam"/>
+        <mapping class="org.example.DAL.models.Faculty"/>
+        <mapping class="org.example.DAL.models.Group"/>
+        <mapping class="org.example.DAL.models.Person"/>
+        <mapping class="org.example.DAL.models.Schedule"/>
+        <mapping class="org.example.DAL.models.Student"/>
+        <mapping class="org.example.DAL.models.Subject"/>
+        <mapping class="org.example.DAL.models.Teacher"/>
+        <mapping class="org.example.DAL.models.University"/>
+
+    </session-factory>
+
+</hibernate-configuration>
