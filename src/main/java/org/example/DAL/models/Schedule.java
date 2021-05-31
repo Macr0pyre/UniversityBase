@@ -9,8 +9,9 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    private Group group;
+    private StudentGroup studentGroup;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Subject subject;
@@ -29,12 +30,20 @@ public class Schedule {
     public Schedule() {
     }
 
-    public Group getGroup() {
-        return group;
+    public Long getId() {
+        return id;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public StudentGroup getGroup() {
+        return studentGroup;
+    }
+
+    public void setGroup(StudentGroup studentGroup) {
+        this.studentGroup = studentGroup;
     }
 
     public Subject getSubject() {
@@ -90,19 +99,11 @@ public class Schedule {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Schedule schedule = (Schedule) o;
-        return semester == schedule.semester && Objects.equals(id, schedule.id) && Objects.equals(group, schedule.group) && Objects.equals(subject, schedule.subject) && Objects.equals(teacher, schedule.teacher) && Objects.equals(startTime, schedule.startTime) && Objects.equals(endTime, schedule.endTime) && Objects.equals(dayOfWeek, schedule.dayOfWeek);
+        return semester == schedule.semester && Objects.equals(id, schedule.id) && Objects.equals(studentGroup, schedule.studentGroup) && Objects.equals(subject, schedule.subject) && Objects.equals(teacher, schedule.teacher) && Objects.equals(startTime, schedule.startTime) && Objects.equals(endTime, schedule.endTime) && Objects.equals(dayOfWeek, schedule.dayOfWeek);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, group, subject, teacher, semester, startTime, endTime, dayOfWeek);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return Objects.hash(id, studentGroup, subject, teacher, semester, startTime, endTime, dayOfWeek);
     }
 }

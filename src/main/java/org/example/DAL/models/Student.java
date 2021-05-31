@@ -8,7 +8,7 @@ import java.util.Objects;
 @Entity
 public class Student extends Person{
     @ManyToOne(cascade = CascadeType.ALL)
-    private Group group;
+    private StudentGroup studentGroup;
 
     private Date birthDate;
 
@@ -24,17 +24,17 @@ public class Student extends Person{
             joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "id")})
     @MapKeyJoinColumn(name = "credit_id")
     @Column(name = "mark")
-    private Map<Credit, Integer> creditMarked;
+    private Map<Credit, Boolean> creditMarked;
 
     public Student() {
     }
 
-    public Group getGroup() {
-        return group;
+    public StudentGroup getGroup() {
+        return studentGroup;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroup(StudentGroup studentGroup) {
+        this.studentGroup = studentGroup;
     }
 
     public Date getBirthDate() {
@@ -53,11 +53,11 @@ public class Student extends Person{
         this.examMarked = examMarked;
     }
 
-    public Map<Credit, Integer> getCreditMarked() {
+    public Map<Credit, Boolean> getCreditMarked() {
         return creditMarked;
     }
 
-    public void setCreditMarked(Map<Credit, Integer> creditMarked) {
+    public void setCreditMarked(Map<Credit, Boolean> creditMarked) {
         this.creditMarked = creditMarked;
     }
 
@@ -67,11 +67,11 @@ public class Student extends Person{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Student student = (Student) o;
-        return Objects.equals(group, student.group) && Objects.equals(birthDate, student.birthDate) && Objects.equals(examMarked, student.examMarked) && Objects.equals(creditMarked, student.creditMarked);
+        return Objects.equals(studentGroup, student.studentGroup) && Objects.equals(birthDate, student.birthDate) && Objects.equals(examMarked, student.examMarked) && Objects.equals(creditMarked, student.creditMarked);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), group, birthDate, examMarked, creditMarked);
+        return Objects.hash(super.hashCode(), studentGroup, birthDate, examMarked, creditMarked);
     }
 }

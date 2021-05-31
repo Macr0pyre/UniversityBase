@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Group {
+public class StudentGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,7 +14,7 @@ public class Group {
     @ManyToOne(cascade = CascadeType.ALL)
     private Department department;
 
-    public Group() {
+    public StudentGroup() {
     }
 
     public Long getId() {
@@ -45,8 +45,8 @@ public class Group {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Group group = (Group) o;
-        return Objects.equals(id, group.id) && Objects.equals(name, group.name) && Objects.equals(department, group.department);
+        StudentGroup studentGroup = (StudentGroup) o;
+        return Objects.equals(id, studentGroup.id) && Objects.equals(name, studentGroup.name) && Objects.equals(department, studentGroup.department);
     }
 
     @Override

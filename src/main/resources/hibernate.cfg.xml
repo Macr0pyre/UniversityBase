@@ -16,7 +16,7 @@
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="connection.pool_size">1</property>
         <property name="show_sql">false</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">drop-and-create</property>
 
 
         <!-- Mapping files -->
@@ -24,13 +24,14 @@
         <mapping class="org.example.DAL.models.Department"/>
         <mapping class="org.example.DAL.models.Exam"/>
         <mapping class="org.example.DAL.models.Faculty"/>
-        <mapping class="org.example.DAL.models.Group"/>
+        <mapping class="org.example.DAL.models.StudentGroup"/>
         <mapping class="org.example.DAL.models.Person"/>
         <mapping class="org.example.DAL.models.Schedule"/>
         <mapping class="org.example.DAL.models.Student"/>
         <mapping class="org.example.DAL.models.Subject"/>
         <mapping class="org.example.DAL.models.Teacher"/>
         <mapping class="org.example.DAL.models.University"/>
+        <mapping class="org.example.DAL.models.DBUser"/>
 
     </session-factory>
 
