@@ -4,7 +4,7 @@ import org.example.DAL.models.StudentGroup;
 
 import java.util.List;
 
-public interface GroupDAO {
+public interface StudentGroupDAO {
     void add(StudentGroup studentGroup);
 
     List<StudentGroup> getAll();

@@ -9,7 +9,7 @@ public class University {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String Name;
+    private String name;
 
     public University() {
     }
@@ -23,11 +23,11 @@ public class University {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     @Override
@@ -35,11 +35,11 @@ public class University {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         University that = (University) o;
-        return Objects.equals(id, that.id) && Objects.equals(Name, that.Name);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, Name);
+        return Objects.hash(id, name);
     }
 }

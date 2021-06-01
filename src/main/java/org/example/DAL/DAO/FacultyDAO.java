@@ -11,8 +11,6 @@ public interface FacultyDAO {
 
     Faculty getById(Long id);
 
-    Faculty getByUniversityId(Long uniId);
-
     Faculty getByName(String facultyName);
 
     void update(Faculty faculty);

@@ -11,8 +11,6 @@ public interface DepartmentDAO {
 
     Department getById(Long id);
 
-    Department getByFacultyId(Long facultyId);
-
     Department getByName(String departmentName);
 
     void update(Department department);
