@@ -7,7 +7,9 @@ public interface DBUserDAO {
 
     DBUser getById(Long id);
 
-    void checkLogin(String email, String pass);
+    DBUser checkLogin(String email, String pass);
+
+    void update(DBUser user);
 
     void delete(DBUser user);
 }

@@ -44,7 +44,7 @@ public class DBUserRepository implements DBUserDAO {
     }
 
     @Override
-    public void checkLogin(String email, String pass) throws NoResultException {
+    public DBUser checkLogin(String email, String pass) throws NoResultException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
@@ -58,6 +58,18 @@ public class DBUserRepository implements DBUserDAO {
         query.select(userRoot);
 
         DBUser user = session.createQuery(query).getSingleResult();
+        transaction.commit();
+        session.close();
+        return user;
+    }
+
+    @Override
+    public void update(DBUser user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(user);
+
         transaction.commit();
         session.close();
     }

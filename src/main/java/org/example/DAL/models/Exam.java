@@ -1,5 +1,8 @@
 package org.example.DAL.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
@@ -14,9 +17,11 @@ public class Exam {
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Teacher teacher;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Subject subject;
 
     private Date date;

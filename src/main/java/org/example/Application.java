@@ -3,25 +3,24 @@ package org.example;
 import org.example.DAL.models.*;
 import org.example.util.HibernateUtil;
 import org.example.util.StringHandler;
+import org.example.view.Navigation;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
-
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         loadData(sessionFactory.openSession());
 
-        HibernateUtil.shutdown();
+        Navigation navigation = new Navigation();
+        navigation.displayLoginPage();
 
+        HibernateUtil.shutdown();
     }
 
     private static void loadData(Session session){
@@ -72,7 +71,7 @@ public class Application {
         department1.setName("Кафедра информатики и программирования");
         department1.setFaculty(faculty1);
         department1.setHead(teacher1);
-        Set<Teacher> teachersForDep1 = new HashSet<>();
+        List<Teacher> teachersForDep1 = new ArrayList<>();
         teachersForDep1.add(teacher1);
         teachersForDep1.add(teacher3);
         department1.setTeachers(teachersForDep1);
@@ -81,7 +80,7 @@ public class Application {
         department2.setName("Кафедра управления транспортом");
         department2.setFaculty(faculty2);
         department2.setHead(teacher2);
-        Set<Teacher> teachersForDep2 = new HashSet<>();
+        List<Teacher> teachersForDep2 = new ArrayList<>();
         teachersForDep2.add(teacher2);
         department2.setTeachers(teachersForDep2);
 
@@ -137,12 +136,6 @@ public class Application {
         student1.setGroup(studentGroup1);
         student1.setEmail("iraengels2000@gmail.com");
         student1.setBirthDate(Date.valueOf("2000-7-24"));
-        Map<Exam, Integer> examsStudent1 = new HashMap<>();
-        examsStudent1.put(exam1, 5);
-        student1.setExamMarked(examsStudent1);
-        Map<Credit, Boolean> creditsStudent1 = new HashMap<>();
-        creditsStudent1.put(credit1, true);
-        student1.setCreditMarked(creditsStudent1);
 
         Student student2 = new Student();
         student2.setSurname("Жуков");
@@ -151,12 +144,6 @@ public class Application {
         student2.setGroup(studentGroup2);
         student2.setEmail("cshuk@mail.ru");
         student2.setBirthDate(Date.valueOf("2001-1-30"));
-        Map<Exam, Integer> examsStudent2 = new HashMap<>();
-        examsStudent2.put(exam2, 4);
-        student2.setExamMarked(examsStudent2);
-        Map<Credit, Boolean> creditsStudent2 = new HashMap<>();
-        creditsStudent2.put(credit2, true);
-        student2.setCreditMarked(creditsStudent2);
 
         Student student3 = new Student();
         student3.setSurname("Боб");
@@ -165,12 +152,6 @@ public class Application {
         student3.setGroup(studentGroup1);
         student3.setEmail("bob128@mail.ru");
         student3.setBirthDate(Date.valueOf("2000-11-15"));
-        Map<Exam, Integer> examsStudent3 = new HashMap<>();
-        examsStudent3.put(exam1, 3);
-        student3.setExamMarked(examsStudent3);
-        Map<Credit, Boolean> creditsStudent3 = new HashMap<>();
-        creditsStudent3.put(credit1, false);
-        student3.setCreditMarked(creditsStudent3);
 
         Schedule schedule1 = new Schedule();
         schedule1.setGroup(studentGroup1);
