@@ -26,32 +26,6 @@ public class DBUserController {
         }
     }
 
-    public boolean setLogin(String oldLogin, String password, String newLogin){
-        try{
-            DBUser user = userRepository.checkLogin(oldLogin, StringHandler.encryptString(password));
-            user.setEmail(newLogin);
-
-            userRepository.update(user);
-            return true;
-        }
-        catch (Exception e){
-            return false;
-        }
-    }
-
-    public boolean setPassword(String oldLogin, String password, String newPassword){
-        try{
-            DBUser user = userRepository.checkLogin(oldLogin, StringHandler.encryptString(password));
-            user.setPassword(StringHandler.encryptString(newPassword));
-
-            userRepository.update(user);
-            return true;
-        }
-        catch (Exception e){
-            return false;
-        }
-    }
-
     public void deleteUser(Long userId){
         DBUser user = userRepository.getById(userId);
 

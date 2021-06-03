@@ -44,23 +44,27 @@ public class DBUserRepository implements DBUserDAO {
     }
 
     @Override
-    public DBUser checkLogin(String email, String pass) throws NoResultException {
+    public void checkLogin(String email, String pass) throws NoResultException {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<DBUser> query = criteriaBuilder.createQuery(DBUser.class);
-        Root<DBUser> userRoot = query.from(DBUser.class);
-        Predicate emailPredicate = criteriaBuilder.equal(userRoot.get(DBUser_.email), email);
-        Predicate passPredicate = criteriaBuilder.equal(userRoot.get(DBUser_.password), pass);
-        Predicate finalPredicate = criteriaBuilder.and(emailPredicate, passPredicate);
-        query.where(finalPredicate);
-        query.select(userRoot);
+        try {
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<DBUser> query = criteriaBuilder.createQuery(DBUser.class);
+            Root<DBUser> userRoot = query.from(DBUser.class);
+            Predicate emailPredicate = criteriaBuilder.equal(userRoot.get(DBUser_.email), email);
+            Predicate passPredicate = criteriaBuilder.equal(userRoot.get(DBUser_.password), pass);
+            Predicate finalPredicate = criteriaBuilder.and(emailPredicate, passPredicate);
+            query.where(finalPredicate);
+            query.select(userRoot);
 
-        DBUser user = session.createQuery(query).getSingleResult();
-        transaction.commit();
-        session.close();
-        return user;
+            DBUser user = session.createQuery(query).getSingleResult();
+        } catch (NoResultException e) {
+            throw new NoResultException();
+        } finally {
+            transaction.commit();
+            session.close();
+        }
     }
 
     @Override
